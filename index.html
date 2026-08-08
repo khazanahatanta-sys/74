@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleplay Kelas VII.3 - SMP Islam Al-Falah Jambi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font Google: Plus Jakarta Sans & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        space: {
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1F2937',
+                            accent: '#6366F1',
+                            cyan: '#06B6D4',
+                            gold: '#F59E0B'
+                        }
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(1deg)' },
+                        },
+                        bounceSlow: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.6', filter: 'drop-shadow(0 0 15px rgba(99, 102, 241, 0.6))' },
+                            '50%': { opacity: '1', filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.9))' },
+                        }
+                    },
+                    animation: {
+                        'float': 'float 5s ease-in-out infinite',
+                        'bounce-slow': 'bounceSlow 2.5s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at top left, #1e1b4b, #0f172a, #020617);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 3D Glassmorphism Cards */
+        .card-3d {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-3d {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(6, 182, 212, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-3d:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        /* Typing cursor effect */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased pb-12 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Background Stars Effect -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-10 left-1/4 w-2 h-2 bg-white rounded-full animate-ping opacity-75"></div>
+        <div class="absolute top-1/3 right-10 w-3 h-3 bg-cyan-400 rounded-full animate-pulse opacity-50"></div>
+        <div class="absolute bottom-20 left-10 w-2 h-2 bg-indigo-400 rounded-full animate-ping opacity-60"></div>
+        <div class="absolute top-1/2 left-2/3 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="relative z-10 pt-8 pb-6 px-4 text-center">
+        <div class="max-w-5xl mx-auto flex flex-col items-center justify-center">
+            
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-xs sm:text-sm font-semibold animate-bounce-slow shadow-lg">
+                    <i data-lucide="rocket" class="w-4 h-4 text-cyan-400"></i>
+                    <span>SMP Islam Al-Falah Jambi • Kelas VII.3</span>
+                </div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-950/80 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-bold shadow-lg">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-pink-400"></i>
+                    <span>Wali Kelas: BU YELSI</span>
+                </div>
+            </div>
+            
+            <h1 class="font-display text-4xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-cyan-400 mb-2 drop-shadow-sm">
+                ROLEPLAY KELAS VII.3
+            </h1>
+            
+            <!-- Terminal Typing Effect Header -->
+            <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl px-5 py-3 max-w-2xl w-full shadow-2xl flex items-center gap-3 mt-2 min-h-[52px]">
+                <i data-lucide="terminal" class="w-5 h-5 text-cyan-400 shrink-0"></i>
+                <div id="typingText" class="text-slate-200 text-sm sm:text-base font-mono typing-cursor text-left">
+                    Selamat datang di Simulator Roleplay Kelas VII.3!
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="relative z-10 max-w-4xl mx-auto px-4 mb-8">
+        <div class="flex flex-wrap items-center justify-center gap-2 p-2 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-800 shadow-xl">
+            <button onclick="switchTab('character-select')" id="tab-btn-character-select" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all bg-indigo-600 text-white shadow-lg">
+                <i data-lucide="users" class="w-4 h-4"></i>
+                <span>Pilih Karakter</span>
+            </button>
+            <button onclick="switchTab('schedule')" id="tab-btn-schedule" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Jadwal Pelajaran</span>
+            </button>
+            <button onclick="switchTab('piket')" id="tab-btn-piket" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Jadwal Piket</span>
+            </button>
+            <button onclick="switchTab('structure')" id="tab-btn-structure" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <span>Struktur Kelas</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Containers -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4">
+
+        <!-- TAB 1: PILIH KARAKTER & ROLEPLAY (Default) -->
+        <section id="tab-character-select" class="tab-content block">
+            
+            <!-- Active Character Dashboard -->
+            <div id="activeCharacterSection" class="hidden mb-10">
+                <div class="card-3d rounded-3xl p-6 sm:p-8 relative overflow-hidden border-2 border-indigo-500/40">
+                    <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-2xl"></div>
+                    
+                    <div class="flex flex-col lg:flex-row items-center gap-8 relative z-10">
+                        <!-- Avatar 3D Display -->
+                        <div class="flex flex-col items-center">
+                            <div class="relative group">
+                                <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-indigo-600 to-cyan-400 p-1 shadow-2xl animate-float">
+                                    <div class="w-full h-full bg-slate-900 rounded-[22px] flex items-center justify-center overflow-hidden relative">
+                                        <div id="activeAvatarIcon" class="text-indigo-400">
+                                            <i data-lucide="user" class="w-20 h-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span id="activeRoleBadge" class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full shadow-lg border border-amber-300 uppercase whitespace-nowrap flex items-center gap-1">
+                                    <i data-lucide="crown" class="w-3 h-3"></i> Ketua Kelas
+                                </span>
+                            </div>
+                            <button onclick="deselectCharacter()" class="mt-6 text-xs text-slate-400 hover:text-cyan-400 flex items-center gap-1 transition-colors">
+                                <i data-lucide="refresh-cw" class="w-3 h-3"></i> Ganti Karakter
+                            </button>
+                        </div>
+
+                        <!-- Character Details -->
+                        <div class="flex-1 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-indigo-900/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-2">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+                                Siswa VII.3 • Wali Kelas: Bu Yelsi
+                            </div>
+                            <h2 id="activeName" class="font-display text-3xl sm:text-5xl font-extrabold text-white mb-2">Kenzie AlKhalifi Hatanta</h2>
+                            <p id="activeQuote" class="text-slate-300 text-sm sm:text-base italic mb-6">"Siap memimpin VII.3 menuju kejayaan!"</p>
+
+                            <!-- Quick Stats Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400 shrink-0">
+                                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="text-xs text-slate-400 block">Hari Piket</span>
+                                        <span id="activePiketDay" class="font-bold text-slate-200">Selasa</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-400 shrink-0">
+                                        <i data-lucide="shield" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="text-xs text-slate-400 block">Jabatan</span>
+                                        <span id="activeRoleTitle" class="font-bold text-slate-200">Ketua Kelas</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl flex items-center gap-3">
+                                    <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 shrink-0">
+                                        <i data-lucide="users" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="text-xs text-slate-400 block">Tim Piket</span>
+                                        <span id="activePiketCount" class="font-bold text-slate-200">4 Teman</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Roleplay Action Buttons -->
+                            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                                <button onclick="triggerRoleplayAction('absen')" class="btn-3d px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 text-white">
+                                    <i data-lucide="user-check" class="w-4 h-4"></i> Masuk Kelas & Absen
+                                </button>
+                                <button onclick="triggerRoleplayAction('piket')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all hover:-translate-y-1">
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> Piket Kebersihan
+                                </button>
+                                <button onclick="triggerRoleplayAction('belajar')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all hover:-translate-y-1">
+                                    <i data-lucide="book-open" class="w-4 h-4 text-cyan-400"></i> Pelajaran Hari Ini
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roleplay Log Output Card -->
+                    <div id="roleplayLog" class="mt-6 p-4 rounded-2xl bg-slate-950/90 border border-indigo-500/30 text-indigo-200 text-sm font-mono flex items-start gap-3 hidden">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+                        <div id="roleplayLogText" class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Character Selection Grid Title -->
+            <div class="text-center mb-6">
+                <h3 class="font-display text-2xl font-bold text-white flex items-center justify-center gap-2">
+                    <i data-lucide="gamepad-2" class="w-6 h-6 text-cyan-400"></i>
+                    Pilih Karakter Kamu (25 Siswa)
+                </h3>
+                <p class="text-slate-400 text-sm mt-1">Klik nama siswa untuk mulai ber-roleplay!</p>
+            </div>
+
+            <!-- Student Grid -->
+            <div id="studentGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Javascript render -->
+            </div>
+        </section>
+
+        <!-- TAB 2: JADWAL PELAJARAN -->
+        <section id="tab-schedule" class="tab-content hidden">
+            <div class="text-center mb-8">
+                <span class="px-3 py-1 bg-cyan-950 border border-cyan-500/30 text-cyan-400 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-2">Kurikulum VII.3 SMP Islam Al-Falah</span>
+                <h2 class="font-display text-3xl font-extrabold text-white">Jadwal Pelajaran Kelas VII.3</h2>
+                <p id="todayDateInfo" class="text-slate-400 text-sm mt-1"></p>
+            </div>
+
+            <!-- Filter Day Selector Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6" id="dayFilters">
+                <button onclick="filterSchedule('ALL')" id="filter-ALL" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white">Semua Hari Kerja</button>
+                <button onclick="filterSchedule('Senin')" id="filter-Senin" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:text-white">Senin</button>
+                <button onclick="filterSchedule('Selasa')" id="filter-Selasa" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:text-white">Selasa</button>
+                <button onclick="filterSchedule('Rabu')" id="filter-Rabu" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:text-white">Rabu</button>
+                <button onclick="filterSchedule('Kamis')" id="filter-Kamis" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:text-white">Kamis</button>
+                <button onclick="filterSchedule('Jumat')" id="filter-Jumat" class="schedule-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-400 hover:text-white">Jum'at</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4" id="scheduleGrid">
+                <!-- Javascript render -->
+            </div>
+        </section>
+
+        <!-- TAB 3: JADWAL PIKET -->
+        <section id="tab-piket" class="tab-content hidden">
+            <div class="text-center mb-8">
+                <span class="px-3 py-1 bg-indigo-950 border border-indigo-500/30 text-indigo-400 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-2">Kebersihan Kelas</span>
+                <h2 class="font-display text-3xl font-extrabold text-white">Jadwal Piket Kebersihan</h2>
+                <p class="text-slate-400 text-sm mt-1">Petugas piket kelas VII.3 (Senin - Jum'at)</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4" id="piketGrid">
+                <!-- Javascript render -->
+            </div>
+        </section>
+
+        <!-- TAB 4: STRUKTUR KELAS -->
+        <section id="tab-structure" class="tab-content hidden">
+            <div class="text-center mb-8">
+                <span class="px-3 py-1 bg-amber-950 border border-amber-500/30 text-amber-400 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-2">Organisasi Kelas</span>
+                <h2 class="font-display text-3xl font-extrabold text-white">Struktur Pengurus Kelas VII.3</h2>
+                <p class="text-slate-400 text-sm mt-1">SMP Islam Al-Falah Jambi</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Wali Kelas Highlight Card -->
+                <div class="card-3d p-6 rounded-3xl border-l-4 border-l-pink-500 bg-gradient-to-r from-pink-950/40 via-slate-900/60 to-slate-900/60 flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0 border border-pink-500/30 shadow-lg">
+                        <i data-lucide="graduation-cap" class="w-9 h-9"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-pink-400 font-bold uppercase tracking-wider">Wali Kelas VII.3</span>
+                        <h3 class="font-display text-2xl font-black text-white">BU YELSI</h3>
+                        <p class="text-xs text-slate-300 mt-1">Membimbing dan mendampingi seluruh kegiatan siswa-siswi Kelas VII.3</p>
+                    </div>
+                </div>
+
+                <!-- Leadership Row (Ketua & Wakil) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Ketua -->
+                    <div class="card-3d p-5 rounded-2xl border-l-4 border-l-amber-500 flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="crown" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-400 font-bold uppercase tracking-wider">Ketua Kelas</span>
+                            <h4 class="font-display text-xl font-extrabold text-white">Kenzie</h4>
+                            <p class="text-xs text-slate-400">Pemimpin utama & penanggung jawab kelas</p>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Ketua -->
+                    <div class="card-3d p-5 rounded-2xl border-l-4 border-l-indigo-500 flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="shield" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-indigo-400 font-bold uppercase tracking-wider">Wakil Ketua Kelas</span>
+                            <h4 class="font-display text-xl font-extrabold text-white">Alfar</h4>
+                            <p class="text-xs text-slate-400">Membantu ketua kelas dalam ketertiban</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sekretaris & Bendahara Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Sekretaris 1 -->
+                    <div class="card-3d p-4 rounded-2xl border-l-4 border-l-cyan-500 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-cyan-400 font-bold uppercase">Sekretaris 1</span>
+                            <h4 class="font-bold text-white text-base">Ayla</h4>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Sekretaris -->
+                    <div class="card-3d p-4 rounded-2xl border-l-4 border-l-cyan-500 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="file-edit" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-cyan-400 font-bold uppercase">Wakil Sekretaris</span>
+                            <h4 class="font-bold text-white text-base">Putri</h4>
+                        </div>
+                    </div>
+
+                    <!-- Bendahara 1 -->
+                    <div class="card-3d p-4 rounded-2xl border-l-4 border-l-emerald-500 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="wallet" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-emerald-400 font-bold uppercase">Bendahara 1</span>
+                            <h4 class="font-bold text-white text-base">Izza</h4>
+                        </div>
+                    </div>
+
+                    <!-- Wakil Bendahara -->
+                    <div class="card-3d p-4 rounded-2xl border-l-4 border-l-emerald-500 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="coins" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-emerald-400 font-bold uppercase">Wakil Bendahara</span>
+                            <h4 class="font-bold text-white text-base">Syifa</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seksi-Seksi (Keamanan & Kebersihan) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Seksi Keamanan Putra -->
+                    <div class="card-3d p-5 rounded-2xl border-l-4 border-l-rose-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Seksi Keamanan Putra</h4>
+                                <p class="text-xs text-slate-400">Menjaga kedisiplinan dan keamanan kelas</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+                            <div class="bg-slate-900/60 p-2 rounded-xl text-center font-semibold text-rose-200 text-sm">
+                                Nopal
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-xl text-center font-semibold text-rose-200 text-sm">
+                                Arya
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seksi Kebersihan -->
+                    <div class="card-3d p-5 rounded-2xl border-l-4 border-l-amber-400">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Seksi Kebersihan</h4>
+                                <p class="text-xs text-slate-400">Koordinator kebersihan ruang kelas</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+                            <div class="bg-slate-900/60 p-2 rounded-xl text-center font-semibold text-amber-200 text-sm">
+                                Memey
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-xl text-center font-semibold text-amber-200 text-sm">
+                                Abil
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anggota Kelas -->
+                <div class="card-3d p-5 rounded-2xl">
+                    <h4 class="font-bold text-slate-300 text-sm mb-3 flex items-center gap-2">
+                        <i data-lucide="users" class="w-4 h-4 text-indigo-400"></i>
+                        Anggota Kelas VII.3
+                    </h4>
+                    <div class="flex flex-wrap gap-2" id="membersList">
+                        <!-- Javascript list -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Web Audio API Synthesizer -->
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'select') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                osc.start(now);
+                osc.stop(now + 0.12);
+            } else if (type === 'action') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                osc.frequency.setValueAtTime(783.99, now + 0.16);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            } else if (type === 'typewriter') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(1000 + Math.random() * 200, now);
+                gain.gain.setValueAtTime(0.02, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+                osc.start(now);
+                osc.stop(now + 0.015);
+            }
+        }
+    </script>
+
+    <!-- App Logic -->
+    <script>
+        // Data Piket (Senin - Jum'at)
+        const piketData = {
+            "Senin": ["Nazila", "Qayra", "Andra", "Arya", "Galih"],
+            "Selasa": ["Balqis", "Dina", "Kenzie", "Abil", "Fathan"],
+            "Rabu": ["Putri", "Raisa", "Sarah", "Daffa", "Arka"],
+            "Kamis": ["Azahra", "Syifa", "Izza", "Farand", "Alfar"],
+            "Jum'at": ["Ayla", "Memey", "Velove", "Fardhan", "Nopal"]
+        };
+
+        // Data Jadwal Pelajaran (Senin - Jum'at)
+        const scheduleData = {
+            "Senin": ["PKN", "PJOK", "MATEMATIKA"],
+            "Selasa": ["SENI BUDAYA", "IPA", "BK", "AKIDAH AKHLAK"],
+            "Rabu": ["AGAMA", "BAHASA INDONESIA", "IPA", "BAHASA INGGRIS"],
+            "Kamis": ["BAHASA ARAB", "IPS", "TAHFIDZ", "BAHASA INDONESIA"],
+            "Jum'at": ["MATEMATIKA", "TIK", "IPS", "BAHASA INGGRIS"]
+        };
+
+        // Database 25 Siswa Kelas VII.3 dengan Struktur Jabatan Resmi Terbaru
+        const students = [
+            { id: "kenzie", name: "Kenzie", full: "Kenzie AlKhalifi Hatanta", role: "Ketua Kelas", piket: "Selasa", gender: "m", icon: "crown", color: "amber" },
+            { id: "alfar", name: "Alfar", full: "Alfar", role: "Wakil Ketua", piket: "Kamis", gender: "m", icon: "shield", color: "indigo" },
+            { id: "ayla", name: "Ayla", full: "Ayla", role: "Sekretaris 1", piket: "Jum'at", gender: "f", icon: "file-text", color: "cyan" },
+            { id: "putri", name: "Putri", full: "Putri", role: "Wakil Sekretaris", piket: "Rabu", gender: "f", icon: "file-edit", color: "cyan" },
+            { id: "izza", name: "Izza", full: "Izza", role: "Bendahara 1", piket: "Kamis", gender: "f", icon: "wallet", color: "emerald" },
+            { id: "syifa", name: "Syifa", full: "Syifa", role: "Wakil Bendahara", piket: "Kamis", gender: "f", icon: "coins", color: "emerald" },
+            { id: "nopal", name: "Nopal", full: "Nopal", role: "Seksi Keamanan", piket: "Jum'at", gender: "m", icon: "lock", color: "rose" },
+            { id: "arya", name: "Arya", full: "Arya", role: "Seksi Keamanan", piket: "Senin", gender: "m", icon: "shield-alert", color: "rose" },
+            { id: "memey", name: "Memey", full: "Memey", role: "Seksi Kebersihan", piket: "Jum'at", gender: "f", icon: "sparkles", color: "amber" },
+            { id: "abil", name: "Abil", full: "Abil", role: "Seksi Kebersihan", piket: "Selasa", gender: "m", icon: "sparkles", color: "amber" },
+            
+            // Anggota Kelas
+            { id: "nazila", name: "Nazila", full: "Nazila", role: "Anggota", piket: "Senin", gender: "f", icon: "user", color: "slate" },
+            { id: "qayra", name: "Qayra", full: "Qayra", role: "Anggota", piket: "Senin", gender: "f", icon: "user", color: "slate" },
+            { id: "andra", name: "Andra", full: "Andra", role: "Anggota", piket: "Senin", gender: "m", icon: "user", color: "slate" },
+            { id: "galih", name: "Galih", full: "Galih", role: "Anggota", piket: "Senin", gender: "m", icon: "user", color: "slate" },
+            
+            { id: "balqis", name: "Balqis", full: "Balqis", role: "Anggota", piket: "Selasa", gender: "f", icon: "user", color: "slate" },
+            { id: "dina", name: "Dina", full: "Dina", role: "Anggota", piket: "Selasa", gender: "f", icon: "user", color: "slate" },
+            { id: "fathan", name: "Fathan", full: "Fathan", role: "Anggota", piket: "Selasa", gender: "m", icon: "user", color: "slate" },
+            
+            { id: "raisa", name: "Raisa", full: "Raisa", role: "Anggota", piket: "Rabu", gender: "f", icon: "user", color: "slate" },
+            { id: "sarah", name: "Sarah", full: "Sarah", role: "Anggota", piket: "Rabu", gender: "f", icon: "user", color: "slate" },
+            { id: "daffa", name: "Daffa", full: "Daffa", role: "Anggota", piket: "Rabu", gender: "m", icon: "user", color: "slate" },
+            { id: "arka", name: "Arka", full: "Arka", role: "Anggota", piket: "Rabu", gender: "m", icon: "user", color: "slate" },
+            
+            { id: "azahra", name: "Azahra", full: "Azahra", role: "Anggota", piket: "Kamis", gender: "f", icon: "user", color: "slate" },
+            { id: "farand", name: "Farand", full: "Farand", role: "Anggota", piket: "Kamis", gender: "m", icon: "user", color: "slate" },
+            
+            { id: "velove", name: "Velove", full: "Velove", role: "Anggota", piket: "Jum'at", gender: "f", icon: "user", color: "slate" },
+            { id: "fardhan", name: "Fardhan", full: "Fardhan", role: "Anggota", piket: "Jum'at", gender: "m", icon: "user", color: "slate" }
+        ];
+
+        let selectedStudent = null;
+        let currentTypewriterTimeout = null;
+
+        // Deteksi Hari Ini
+        function getTodayIndonesianDay() {
+            const daysMap = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu'];
+            return daysMap[new Date().getDay()];
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderStudentGrid();
+            renderSchedule('ALL');
+            renderPiket();
+            renderMembers();
+            lucide.createIcons();
+
+            const today = getTodayIndonesianDay();
+            const todayDate = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            
+            if (today === 'Sabtu' || today === 'Minggu') {
+                document.getElementById('todayDateInfo').innerText = `Hari Ini: ${todayDate} (Libur Akhir Pekan 🎉)`;
+                typeWriterEffect(`Hari ini ${today}! Sekolah libur, tidak ada pelajaran maupun piket. Selamat liburan kawan-kawan VII.3!`, "typingText");
+            } else {
+                document.getElementById('todayDateInfo').innerText = `Hari Ini: ${todayDate}`;
+                typeWriterEffect(`Selamat datang di Roleplay VII.3! Hari ini hari ${today}, mari cek jadwal pelajaran & piket kamu.`, "typingText");
+            }
+        });
+
+        // Typing effect mulus tanpa bug
+        function typeWriterEffect(text, elementId, speed = 20) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            if (currentTypewriterTimeout) {
+                clearTimeout(currentTypewriterTimeout);
+            }
+
+            el.textContent = "";
+            let i = 0;
+
+            function step() {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    if (Math.random() > 0.4) playSound('typewriter');
+                    i++;
+                    currentTypewriterTimeout = setTimeout(step, speed);
+                }
+            }
+            step();
+        }
+
+        function renderStudentGrid() {
+            const grid = document.getElementById('studentGrid');
+            grid.innerHTML = students.map(s => {
+                const isSelected = selectedStudent && selectedStudent.id === s.id;
+                const roleBadgeColor = s.role === 'Ketua Kelas' ? 'bg-amber-500/20 text-amber-400 border-amber-500/40' :
+                                       s.role === 'Wakil Ketua' ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/40' :
+                                       s.role.includes('Sekretaris') ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40' :
+                                       s.role.includes('Bendahara') ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' :
+                                       s.role.includes('Keamanan') ? 'bg-rose-500/20 text-rose-400 border-rose-500/40' :
+                                       s.role.includes('Kebersihan') ? 'bg-amber-400/20 text-amber-300 border-amber-400/40' :
+                                       'bg-slate-800 text-slate-400 border-slate-700';
+
+                return `
+                    <button onclick="selectCharacter('${s.id}')" class="card-3d p-4 rounded-2xl text-center group flex flex-col items-center justify-between relative overflow-hidden transition-all ${isSelected ? 'ring-2 ring-cyan-400 bg-indigo-950/80 scale-105' : ''}">
+                        <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:scale-110 group-hover:border-cyan-400 transition-all mb-3 shadow-md">
+                            <i data-lucide="${s.icon}" class="w-7 h-7 text-cyan-400"></i>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-white text-base group-hover:text-cyan-300 transition-colors">${s.name}</h4>
+                            <span class="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded-full border ${roleBadgeColor}">
+                                ${s.role}
+                            </span>
+                        </div>
+
+                        <div class="mt-3 w-full pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                            <span>Piket:</span>
+                            <span class="font-bold text-slate-200">${s.piket}</span>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function selectCharacter(id) {
+            playSound('select');
+            selectedStudent = students.find(s => s.id === id);
+            
+            document.getElementById('activeCharacterSection').classList.remove('hidden');
+            document.getElementById('activeName').innerText = selectedStudent.full;
+            document.getElementById('activePiketDay').innerText = selectedStudent.piket;
+            document.getElementById('activeRoleTitle').innerText = selectedStudent.role;
+            
+            const mates = piketData[selectedStudent.piket].filter(m => !m.toLowerCase().includes(selectedStudent.name.toLowerCase()));
+            document.getElementById('activePiketCount').innerText = `${mates.length} Teman (${selectedStudent.piket})`;
+            
+            document.getElementById('activeRoleBadge').innerHTML = `<i data-lucide="${selectedStudent.icon}" class="w-3 h-3"></i> ${selectedStudent.role}`;
+            document.getElementById('activeAvatarIcon').innerHTML = `<i data-lucide="${selectedStudent.icon}" class="w-16 h-16 sm:w-20 sm:h-20"></i>`;
+            
+            const quotes = {
+                "kenzie": '"Sebagai ketua kelas, mari kita ciptakan kelas VII.3 yang tertib, bersih, dan kompak bersama Bu Yelsi!"',
+                "alfar": '"Siap mendampingi Kenzie dan menjaga kerapian serta kedisiplinan VII.3!"',
+                "ayla": '"Mencatat seluruh informasi dan keperluan kelas secara rapi!"',
+                "putri": '"Wakil sekretaris siap membantu pengarsipan tugas kelas VII.3!"',
+                "izza": '"Mengelola kas kelas VII.3 dengan rapi, jujur, dan transparan!"',
+                "syifa": '"Wakil bendahara selalu siap mencatat setiap pemasukan kas kelas!"',
+                "nopal": '"Keamanan putra terjaga aman, tertib, dan kondusif!"',
+                "arya": '"Disiplin tinggi dan suasana belajar tetap nyaman di bawah bimbingan Bu Yelsi!"',
+                "memey": '"Memastikan kelas VII.3 selalu harum dan bersih setiap hari!"',
+                "abil": '"Seksi kebersihan siap mengkoordinir teman-teman piket kelas!"'
+            };
+            document.getElementById('activeQuote').innerText = quotes[selectedStudent.id] || `"Bangga menjadi bagian dari keluarga VII.3 SMP Islam Al-Falah Jambi!"`;
+
+            document.getElementById('roleplayLog').classList.add('hidden');
+
+            renderStudentGrid();
+            document.getElementById('activeCharacterSection').scrollIntoView({ behavior: 'smooth' });
+
+            typeWriterEffect(`Karakter terpilih: ${selectedStudent.full} (${selectedStudent.role}). Selamat ber-roleplay!`, "typingText");
+            lucide.createIcons();
+        }
+
+        function deselectCharacter() {
+            playSound('click');
+            selectedStudent = null;
+            document.getElementById('activeCharacterSection').classList.add('hidden');
+            renderStudentGrid();
+            typeWriterEffect("Pilih karakter siswa untuk memulai roleplay!", "typingText");
+        }
+
+        function triggerRoleplayAction(action) {
+            if (!selectedStudent) return;
+            playSound('action');
+
+            const logBox = document.getElementById('roleplayLog');
+            logBox.classList.remove('hidden');
+
+            const today = getTodayIndonesianDay();
+            const isWeekend = (today === 'Sabtu' || today === 'Minggu');
+            
+            let message = "";
+
+            if (action === 'absen') {
+                if (isWeekend) {
+                    message = `[SABTU/MINGGU - LIBUR] Hari ini hari ${today}! Sekolah libur, jadi tidak perlu absen kelas. Selamat bersantai ${selectedStudent.name}!`;
+                } else {
+                    message = `[ABSENSI ${today.toUpperCase()}] ${selectedStudent.name} (${selectedStudent.role}) telah hadir di ruang kelas VII.3 SMP Islam Al-Falah Jambi. "Assalamu’alaikum Bu Yelsi dan teman-teman!" - Absen berhasil tercatat.`;
+                }
+            } else if (action === 'piket') {
+                const teamMembers = piketData[selectedStudent.piket].join(', ');
+                if (selectedStudent.piket === today) {
+                    message = `[PIKET HARI INI (${today.toUpperCase()})] Waktunya ${selectedStudent.name} piket bersama ${teamMembers}! Kelas VII.3 langsung bersih dan siap digunakan!`;
+                } else {
+                    message = `[INFO PIKET] Jadwal piket ${selectedStudent.name} adalah hari ${selectedStudent.piket} bersama tim (${teamMembers}). Hari ini (${today}) jalan-jalan santai dulu!`;
+                }
+            } else if (action === 'belajar') {
+                if (isWeekend) {
+                    message = `[INFO PELAJARAN] Hari ini hari ${today} (Libur Sekolah!). Tidak ada jam pelajaran hari ini. Selamat beristirahat kawan-kawan VII.3!`;
+                } else {
+                    const todaySubjects = scheduleData[today].join(', ');
+                    message = `[JADWAL PELAJARAN HARI INI (${today.toUpperCase()})] ${selectedStudent.name} menyiapkan buku paket untuk pelajaran hari ini: ${todaySubjects}. Selamat belajar!`;
+                }
+            }
+
+            typeWriterEffect(message, "roleplayLogText", 18);
+        }
+
+        function switchTab(tabId) {
+            playSound('click');
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+                el.classList.add('text-slate-400');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+            activeBtn.classList.remove('text-slate-400');
+
+            if (tabId === 'schedule') {
+                renderSchedule('ALL');
+            }
+
+            lucide.createIcons();
+        }
+
+        function filterSchedule(day) {
+            playSound('click');
+            document.querySelectorAll('.schedule-filter-btn').forEach(b => {
+                b.classList.remove('bg-indigo-600', 'text-white');
+                b.classList.add('bg-slate-800', 'text-slate-400');
+            });
+
+            const activeFilterBtn = document.getElementById(`filter-${day}`);
+            if (activeFilterBtn) {
+                activeFilterBtn.classList.add('bg-indigo-600', 'text-white');
+                activeFilterBtn.classList.remove('bg-slate-800', 'text-slate-400');
+            }
+
+            renderSchedule(day);
+        }
+
+        function renderSchedule(filterDay = 'ALL') {
+            const container = document.getElementById('scheduleGrid');
+            const days = filterDay === 'ALL' ? ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at"] : [filterDay];
+            const today = getTodayIndonesianDay();
+
+            container.innerHTML = days.map(day => {
+                const isToday = day === today;
+                return `
+                    <div class="card-3d p-5 rounded-2xl border-t-4 ${isToday ? 'border-t-cyan-400 ring-2 ring-cyan-500/50 bg-indigo-950/40' : 'border-t-slate-700'} flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-display text-xl font-extrabold ${isToday ? 'text-cyan-300' : 'text-slate-200'}">${day}</h3>
+                                    ${isToday ? '<span class="text-[10px] font-black px-2 py-0.5 rounded bg-cyan-500 text-slate-950 animate-pulse">HARI INI</span>' : ''}
+                                </div>
+                                <i data-lucide="book-open" class="w-5 h-5 ${isToday ? 'text-cyan-400' : 'text-slate-500'}"></i>
+                            </div>
+                            <ul class="space-y-2.5">
+                                ${scheduleData[day].map((sub, idx) => `
+                                    <li class="flex items-center gap-2 text-sm text-slate-200 bg-slate-900/70 p-2.5 rounded-xl border border-slate-800">
+                                        <span class="w-5 h-5 rounded-lg bg-indigo-500/20 text-indigo-400 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+                                        <span class="font-bold text-slate-100">${sub}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderPiket() {
+            const container = document.getElementById('piketGrid');
+            const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at"];
+            const today = getTodayIndonesianDay();
+
+            container.innerHTML = days.map(day => {
+                const isToday = day === today;
+                return `
+                    <div class="card-3d p-5 rounded-2xl border-t-4 ${isToday ? 'border-t-amber-400 ring-2 ring-amber-500/50 bg-slate-900/90' : 'border-t-indigo-500'} flex flex-col justify-between animate-bounce-slow" style="animation-duration: ${3 + Math.random() * 2}s">
+                        <div>
+                            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-display text-xl font-extrabold ${isToday ? 'text-amber-300' : 'text-indigo-300'}">${day}</h3>
+                                    ${isToday ? '<span class="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500 text-slate-950">PIKET HARI INI</span>' : ''}
+                                </div>
+                                <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <ul class="space-y-2">
+                                ${piketData[day].map(person => {
+                                    let isLeader = person === "Kenzie" || person === "Alfar" || person === "Ayla" || person === "Putri" || person === "Izza" || person === "Syifa";
+                                    return `
+                                        <li class="flex items-center justify-between text-sm text-slate-200 bg-slate-900/60 px-3 py-2 rounded-xl border border-slate-800">
+                                            <span class="font-semibold flex items-center gap-2">
+                                                <i data-lucide="user" class="w-3.5 h-3.5 text-cyan-400"></i> ${person}
+                                            </span>
+                                            ${isLeader ? '<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Pengurus</span>' : ''}
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderMembers() {
+            const container = document.getElementById('membersList');
+            const members = students.filter(s => s.role === 'Anggota');
+            container.innerHTML = members.map(m => `
+                <span class="bg-slate-900 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 hover:border-indigo-500 hover:text-white transition-all">
+                    <i data-lucide="user" class="w-3.5 h-3.5 text-indigo-400"></i>
+                    ${m.name}
+                </span>
+            `).join('');
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
+
